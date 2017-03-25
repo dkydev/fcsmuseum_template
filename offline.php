@@ -9,136 +9,163 @@
 
 defined('_JEXEC') or die;
 
-$twofactormethods = JAuthenticationHelper::getTwoFactorMethods();
-$app              = JFactory::getApplication();
-$doc              = JFactory::getDocument();
-$this->language   = $doc->language;
-$this->direction  = $doc->direction;
+$app             = JFactory::getApplication();
+$doc             = JFactory::getDocument();
+$user            = JFactory::getUser();
+$this->language  = $doc->language;
+$this->direction = $doc->direction;
 
 // Output as HTML5
 $doc->setHtml5(true);
 
-$fullWidth = 1;
+// Getting params from template
+$params = $app->getTemplate(true)->params;
 
-// Add JavaScript Frameworks
-JHtml::_('bootstrap.framework');
+// Detecting Active Variables
+$option   = $app->input->getCmd('option', '');
+$view     = $app->input->getCmd('view', '');
+$layout   = $app->input->getCmd('layout', '');
+$task     = $app->input->getCmd('task', '');
+$itemid   = $app->input->getCmd('Itemid', '');
+$sitename = $app->get('sitename');
 
-$doc->addScriptVersion($this->baseurl . '/templates/' . $this->template . '/js/template.js');
+if($task == "edit" || $layout == "form" )
+{
+    $fullWidth = 1;
+}
+else
+{
+    $fullWidth = 0;
+}
+
+$doc->addScriptVersion($this->baseurl . '/templates/' . $this->template . '/js/bootstrap.js');
 
 // Add Stylesheets
-$doc->addStyleSheetVersion($this->baseurl . '/templates/' . $this->template . '/css/template.css');
-$doc->addStyleSheetVersion($this->baseurl . '/templates/' . $this->template . '/css/offline.css');
+$doc->addStyleSheetVersion($this->baseurl . '/templates/' . $this->template . '/css/bootstrap.css');
 
 // Use of Google Font
 if ($this->params->get('googleFont'))
 {
-	$doc->addStyleSheet('//fonts.googleapis.com/css?family=' . $this->params->get('googleFontName'));
-	$doc->addStyleDeclaration("
-	h1, h2, h3, h4, h5, h6, .site-title {
-		font-family: '" . str_replace('+', ' ', $this->params->get('googleFontName')) . "', sans-serif;
-	}");
+    $doc->addStyleSheet('//fonts.googleapis.com/css?family=' . $this->params->get('googleFontName'));
+    $doc->addStyleDeclaration("
+    h1, h2, h3, h4, h5, h6, .site-title {
+        font-family: '" . str_replace('+', ' ', $this->params->get('googleFontName')) . "', sans-serif;
+    }");
 }
 
 // Template color
 if ($this->params->get('templateColor'))
 {
-	$doc->addStyleDeclaration("
-	body.site {
-		border-top: 3px solid " . $this->params->get('templateColor') . ";
-		background-color: " . $this->params->get('templateBackgroundColor') . ";
-	}
-	a {
-		color: " . $this->params->get('templateColor') . ";
-	}
-	.nav-list > .active > a,
-	.nav-list > .active > a:hover,
-	.dropdown-menu li > a:hover,
-	.dropdown-menu .active > a,
-	.dropdown-menu .active > a:hover,
-	.nav-pills > .active > a,
-	.nav-pills > .active > a:hover,
-	.btn-primary {
-		background: " . $this->params->get('templateColor') . ";
-	}");
+    $doc->addStyleDeclaration("
+    body.site {
+        border-top: 3px solid " . $this->params->get('templateColor') . ";
+        background-color: " . $this->params->get('templateBackgroundColor') . ";
+    }
+    a {
+        color: " . $this->params->get('templateColor') . ";
+    }
+    .nav-list > .active > a,
+    .nav-list > .active > a:hover,
+    .dropdown-menu li > a:hover,
+    .dropdown-menu .active > a,
+    .dropdown-menu .active > a:hover,
+    .nav-pills > .active > a,
+    .nav-pills > .active > a:hover,
+    .btn-primary {
+        background: " . $this->params->get('templateColor') . ";
+    }");
 }
-
-// Check for a custom CSS file
-$userCss = JPATH_SITE . '/templates/' . $this->template . '/css/user.css';
-
-if (file_exists($userCss) && filesize($userCss) > 0)
-{
-	$doc->addStyleSheetVersion($this->baseurl . '/templates/' . $this->template . '/css/user.css');
-}
-
-// Load optional RTL Bootstrap CSS
-JHtml::_('bootstrap.loadCss', false, $this->direction);
 
 // Logo file or site title param
-$sitename = $app->get('sitename');
-
 if ($this->params->get('logoFile'))
 {
-	$logo = '<img src="' . JUri::root() . $this->params->get('logoFile') . '" alt="' . $sitename . '" />';
+    $logo = '<img src="' . JUri::root() . $this->params->get('logoFile') . '" alt="' . $sitename . '" />';
 }
 elseif ($this->params->get('sitetitle'))
 {
-	$logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($this->params->get('sitetitle')) . '</span>';
+    $logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($this->params->get('sitetitle'), ENT_COMPAT, 'UTF-8') . '</span>';
 }
 else
 {
-	$logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
+    $logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
 }
 ?>
+
 <!DOCTYPE html>
+
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
+
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<jdoc:include type="head" />
-	<!--[if lt IE 9]><script src="<?php echo JUri::root(true); ?>/media/jui/js/html5.js"></script><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <jdoc:include type="head" />
 </head>
-<body class="site">
-	<div class="outer">
-		<div class="middle">
-			<div class="inner well">
-				<div class="header">
-				<?php if (!empty($logo)) : ?>
-					<h1><?php echo $logo; ?></h1>
-				<?php else : ?>
-					<h1><?php echo htmlspecialchars($app->get('sitename')); ?></h1>
-				<?php endif; ?>
-				<?php if ($app->get('offline_image') && file_exists($app->get('offline_image'))) : ?>
-					<img src="<?php echo $app->get('offline_image'); ?>" alt="<?php echo htmlspecialchars($app->get('sitename')); ?>" />
-				<?php endif; ?>
-				<?php if ($app->get('display_offline_message', 1) == 1 && str_replace(' ', '', $app->get('offline_message')) != '') : ?>
-					<p><?php echo $app->get('offline_message'); ?></p>
-				<?php elseif ($app->get('display_offline_message', 1) == 2) : ?>
-					<p><?php echo JText::_('JOFFLINE_MESSAGE'); ?></p>
-				<?php endif; ?>
-				</div>
-				<jdoc:include type="message" />
-				<form action="<?php echo JRoute::_('index.php', true); ?>" method="post" id="form-login">
-					<fieldset>
-						<label for="username"><?php echo JText::_('JGLOBAL_USERNAME'); ?></label>
-						<input name="username" id="username" type="text" title="<?php echo JText::_('JGLOBAL_USERNAME'); ?>" />
 
-						<label for="password"><?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
-						<input type="password" name="password" id="password" title="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>" />
-
-						<?php if (count($twofactormethods) > 1) : ?>
-						<label for="secretkey"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
-						<input type="text" name="secretkey" id="secretkey" title="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>" />
-						<?php endif; ?>
-
-						<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo JText::_('JLOGIN'); ?>" />
-
-						<input type="hidden" name="option" value="com_users" />
-						<input type="hidden" name="task" value="user.login" />
-						<input type="hidden" name="return" value="<?php echo base64_encode(JUri::base()); ?>" />
-						<?php echo JHtml::_('form.token'); ?>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
+<body>
+    
+    <div class="container">
+        
+        <jdoc:include type="modules" name="header" style="none" />
+        
+        <jdoc:include type="modules" name="alert" style="none" />
+        
+        <nav class="navbar navbar-light bg-faded rounded navbar-toggleable-md">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="<?php echo $this->baseurl; ?>/"><?php echo $logo; ?></a>
+            <div class="collapse navbar-collapse" id="containerNavbar">
+                <jdoc:include type="modules" name="menu" style="none" />
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </li>
+                </ul>
+                <jdoc:include type="modules" name="menu-right" style="none" />
+            </div>
+        </nav>
+        
+        <jdoc:include type="modules" name="banner" style="none" />
+        
+        <div class="row">
+            <div class="col">
+                <jdoc:include type="modules" name="left" style="none" />
+            </div>
+            <div class="col">
+                <jdoc:include type="modules" name="top" style="none" />
+                <jdoc:include type="message" />
+                <jdoc:include type="component" />
+            </div>
+            <div class="col">
+                <jdoc:include type="modules" name="right" style="none" />
+            </div>
+        </div>
+        
+        <footer class="footer" role="contentinfo">
+        
+            <jdoc:include type="modules" name="footer" style="none" />
+            
+            <?php echo $logo; ?> &copy; <?php echo date('Y'); ?> <?php echo $sitename; ?>
+            
+        </footer>
+        
+    </div>
+    
+    <jdoc:include type="modules" name="debug" style="none" />
+    
 </body>
+
 </html>
