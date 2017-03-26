@@ -95,25 +95,33 @@ else
                 </button>
                 <div class="collapse navbar-collapse" id="containerNavbar">
                     <jdoc:include type="modules" name="menu" style="none" />
-                    <jdoc:include type="modules" name="menu-right" style="none" />
                 </div>
+                <jdoc:include type="modules" name="search" style="none" />
             </nav>
             
             <jdoc:include type="modules" name="banner" style="none" />
             
             <div class="row">
+
+                <?php if ($this->countModules('left')): ?>
                 <div class="col">
                     <jdoc:include type="modules" name="left" style="none" />
                 </div>
+                <?php endif; ?>
+
                 <div class="col">
                     <jdoc:include type="modules" name="top" style="none" />
                     <jdoc:include type="message" />
                     <jdoc:include type="component" />
                     <jdoc:include type="modules" name="bottom" style="none" />
                 </div>
+
+                <?php if ($this->countModules('right')) : ?>
                 <div class="col">
                     <jdoc:include type="modules" name="right" style="none" />
                 </div>
+                <?php endif; ?>
+
             </div>
         
         </div>

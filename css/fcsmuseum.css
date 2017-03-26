@@ -16,19 +16,41 @@ body {
 }
 
 .navbar-nav > .nav-item > a.nav-link {
-    padding-top:1.2em;
-    padding-bottom:1.2em;
-    padding-left:1.3em;
-    padding-right:1.3em;
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    padding-left: 1em;
+    padding-right: 1em;
     border-right:1px solid white;
     color:white;
 }
 
-.navbar-nav > .nav-item > a.nav-link.active, .navbar-nav > .nav-item > a.nav-link:hover {
+.navbar-nav > .nav-item.active > a.nav-link, .navbar-nav > .nav-item > a.nav-link:hover {
     background:#e53935;
     color:white;
 }
 
 .navbar-toggler {
     margin-top:10px;
+}
+
+div.search {
+        margin-top: 0px;
+    margin-right: 10px;
+    min-width: 240px;
+}
+.inputbox {
+    border: none;
+    padding: 6px;
+    background: #f4f4f4;
+    font-size: 0.85em;
+    color: #505050;
+    outline:none;
+}
+
+@media (max-width: 991px)  {
+    div.search {
+        width:100%;
+        clear: both;
+        margin: 15px;
+    }
 }
