@@ -2,11 +2,59 @@ body {
     background: url(../images/bg.jpg) center 0 repeat;
 }
 
+h1 {
+    font-size: 24px;
+    font-family: 'Open Sans',sans-serif;
+    line-height: 30px;
+    padding: 0 0 1px 0;
+    font-weight: normal;
+    overflow: hidden;
+    margin-bottom: 14px;
+    position: relative;
+}
+
+h1:after {
+    content: "";
+    width: 100%;
+    height: 5px;
+    bottom: 6px;
+    background: #ff4b49;
+    position: absolute;
+    margin-left: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    font-family: 'Open Sans',sans-serif;
+    line-height: 21px;
+    padding: 0px;
+    margin: 0px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+p {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 0.9em;
+    line-height: 1em;
+    color: #2d2e2f;
+}
+
 .wrapper {
     background:white;
     margin:15px 0px;
     padding:15px;
 }
+
+.wrapper-top {
+    margin-top:0px;
+    text-align: center;
+}
+
+.wrapper-top img {
+    max-width:100%;
+}
+
 
 .navbar {
     background: url(../images/menu_bg.jpg) center 0 repeat;
@@ -27,6 +75,8 @@ body {
 .navbar-nav > .nav-item.active > a.nav-link, .navbar-nav > .nav-item > a.nav-link:hover {
     background:#e53935;
     color:white;
+    padding-top: 34px;
+    margin-top: -15px;
 }
 
 .navbar-toggler {
@@ -53,4 +103,24 @@ div.search {
         clear: both;
         margin: 15px;
     }
+    .navbar-nav > .nav-item.active > a.nav-link, .navbar-nav > .nav-item > a.nav-link:hover {
+        padding-top: 1.2em;
+        padding-bottom: 1.2em;
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-top:0px;
+    }
+}
+
+.main-content {
+    margin-top:15px;
+}
+
+.items-row {
+    margin-top:35px;
+}
+
+.published {
+    font: 12px 'Open Sans',sans-serif;
+    color:#9d9d9d;
 }

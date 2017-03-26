@@ -63,6 +63,7 @@ else
 {
     $logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -80,12 +81,11 @@ else
 <body>
     
     <div class="container">
-        <div class="wrapper">
-            <a class="navbar-brand" href="<?php echo $this->baseurl; ?>/"><?php echo $logo; ?></a>
-            <jdoc:include type="modules" name="header" style="none" />
+        <div class="wrapper wrapper-top">
+            <a href="<?php echo $this->baseurl; ?>/"><img src="templates/fcsmuseum/images/logo.png" /></a>
         </div>
 
-        <jdoc:include type="modules" name="alert" style="none" />
+        <jdoc:include type="modules" name="header" style="none" />
 
         <div class="wrapper">
         
@@ -101,27 +101,29 @@ else
             
             <jdoc:include type="modules" name="banner" style="none" />
             
-            <div class="row">
+            <div class="main-content">
+                <div class="row">
 
-                <?php if ($this->countModules('left')): ?>
-                <div class="col">
-                    <jdoc:include type="modules" name="left" style="none" />
+                    <?php if ($this->countModules('left')): ?>
+                    <div class="col">
+                        <jdoc:include type="modules" name="left" style="none" />
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="col">
+                        <jdoc:include type="modules" name="top" style="none" />
+                        <jdoc:include type="message" />
+                        <jdoc:include type="component" />
+                        <jdoc:include type="modules" name="bottom" style="none" />
+                    </div>
+
+                    <?php if ($this->countModules('right')) : ?>
+                    <div class="col">
+                        <jdoc:include type="modules" name="right" style="none" />
+                    </div>
+                    <?php endif; ?>
+
                 </div>
-                <?php endif; ?>
-
-                <div class="col">
-                    <jdoc:include type="modules" name="top" style="none" />
-                    <jdoc:include type="message" />
-                    <jdoc:include type="component" />
-                    <jdoc:include type="modules" name="bottom" style="none" />
-                </div>
-
-                <?php if ($this->countModules('right')) : ?>
-                <div class="col">
-                    <jdoc:include type="modules" name="right" style="none" />
-                </div>
-                <?php endif; ?>
-
             </div>
         
         </div>
