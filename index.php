@@ -131,7 +131,9 @@ else
         <div class="wrapper">
             <footer class="footer" role="contentinfo">
                 <jdoc:include type="modules" name="footer" style="none" />
-                <?php echo $logo; ?> &copy; <?php echo date('Y'); ?>
+                <div class="footer-copyright">
+                    <?php echo $logo; ?> &copy; <?php echo date('Y'); ?>
+                </div>
             </footer>
         </div>
 

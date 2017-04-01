@@ -3,13 +3,14 @@ body {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 32px;
     font-family: 'Open Sans',sans-serif;
     line-height: 30px;
     padding: 0 0 1px 0;
-    font-weight: normal;
+    font-weight: bold;
     overflow: hidden;
-    margin-bottom: 14px;
+    margin-top: 5px;
+    margin-bottom: 20px;
     position: relative;
 }
 
@@ -24,19 +25,20 @@ h1:after {
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 24px;
     font-family: 'Open Sans',sans-serif;
-    line-height: 21px;
+    line-height: 22px;
     padding: 0px;
-    margin: 0px;
-    font-weight: normal;
+    margin-bottom: 16px;
+    margin-top: 24px;
+    font-weight: 500;
     text-transform: uppercase;
 }
 
 p {
     font-family: Arial,Helvetica,sans-serif;
-    font-size: 0.9em;
-    line-height: 1em;
+    font-size: 1.0em;
+    line-height: 1.5em;
     color: #2d2e2f;
 }
 
@@ -85,16 +87,17 @@ p {
 
 div.search {
         margin-top: 0px;
-    margin-right: 10px;
-    min-width: 240px;
+        margin-right: 10px;
+        min-width: 226px;0px
 }
 .inputbox {
     border: none;
-    padding: 6px;
+    padding: 4px 4px 4px 10px;
     background: #f4f4f4;
-    font-size: 0.85em;
-    color: #505050;
+    font-size: 1em;
+    color: #292b2c;
     outline:none;
+    width: 170px;
 }
 
 @media (max-width: 991px)  {
@@ -121,6 +124,39 @@ div.search {
 }
 
 .published {
-    font: 12px 'Open Sans',sans-serif;
-    color:#9d9d9d;
+    margin-top: -10px;
+    font: 18px 'Open Sans',sans-serif;
+    color: #777777;
+}
+
+.footer-copyright {
+    text-align: center;
+    margin: 20px 0px 0px 0px;
+    padding: 16px;
+    background: #e53935;
+    color: white;
+}
+
+.custom-welcome-banner h1 {
+    color: white;
+}
+
+.custom-welcome-banner {
+    background: #e53935;
+    padding: 20px;
+    overflow: visible;
+    position: relative;
+}
+
+.custom-welcome-banner img {
+    float: right;
+    margin-top: -45px;
+    margin-left: 30px;
+    z-index: 10000;
+    position: relative;
+    margin-bottom: -23px;
+}
+
+.custom-welcome-banner p {
+    color: white;
 }
