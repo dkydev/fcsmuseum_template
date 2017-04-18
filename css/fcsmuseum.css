@@ -6,11 +6,11 @@ h1 {
     font-size: 32px;
     font-family: 'Open Sans',sans-serif;
     line-height: 30px;
-    padding: 0 0 1px 0;
-    font-weight: bold;
+    padding: 0 0 2px 0;
+    font-weight: normal;
     overflow: hidden;
     margin-top: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     position: relative;
 }
 
@@ -25,14 +25,13 @@ h1:after {
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 28px;
     font-family: 'Open Sans',sans-serif;
     line-height: 22px;
     padding: 0px;
     margin-bottom: 16px;
-    margin-top: 24px;
-    font-weight: 500;
-    text-transform: uppercase;
+    margin-top: 0px;
+    font-weight: normal;
 }
 
 p {
@@ -44,13 +43,14 @@ p {
 
 .wrapper {
     background:white;
-    margin:15px 0px;
-    padding:15px;
+    margin: 20px 0px;
+    padding: 30px;
 }
 
 .wrapper-top {
     margin-top:0px;
     text-align: center;
+    padding: 20px;
 }
 
 .wrapper-top img {
@@ -77,8 +77,11 @@ p {
 .navbar-nav > .nav-item.active > a.nav-link, .navbar-nav > .nav-item > a.nav-link:hover {
     background:#e53935;
     color:white;
-    padding-top: 34px;
-    margin-top: -15px;
+    padding-top: 49px;
+    margin-top: -30px;
+    margin-bottom: 0px;
+    border-bottom: none;
+    z-index: 10;
 }
 
 .navbar-toggler {
@@ -116,25 +119,22 @@ div.search {
 }
 
 .main-content {
-    margin-top:15px;
+    margin: 20px 0px 20px 0px;
 }
 
 .items-row {
-    margin-top:35px;
+    margin-top: 25px;
 }
 
 .published {
-    margin-top: -10px;
-    font: 18px 'Open Sans',sans-serif;
+    margin-top: -8px;
+    font: 14px 'Open Sans',sans-serif;
     color: #777777;
 }
 
 .footer-copyright {
     text-align: center;
-    margin: 20px 0px 0px 0px;
-    padding: 16px;
-    background: #e53935;
-    color: white;
+    padding: 20px;
 }
 
 .custom-welcome-banner h1 {
@@ -143,15 +143,16 @@ div.search {
 
 .custom-welcome-banner {
     background: #e53935;
-    padding: 20px;
+    padding: 30px 30px 20px 30px;
     overflow: visible;
     position: relative;
 }
 
 .custom-welcome-banner img {
     float: right;
-    margin-top: -45px;
-    margin-left: 30px;
+    margin-top: -100px;
+    margin-left: 20px;
+    margin-right: -2px;
     z-index: 10000;
     position: relative;
     margin-bottom: -23px;

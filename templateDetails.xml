@@ -34,6 +34,8 @@
         <position>left</position>
         <position>right</position>
         <position>bottom</position>
+        <position>bottom-left</position>
+        <position>bottom-right</position>
         <position>footer</position>
         <position>debug</position>
     </positions>

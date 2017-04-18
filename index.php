@@ -82,7 +82,7 @@ else
     
     <div class="container">
         <div class="wrapper wrapper-top">
-            <a href="<?php echo $this->baseurl; ?>/"><img src="templates/fcsmuseum/images/logo.png" /></a>
+            <a href="<?php echo $this->baseurl; ?>/"><img src="templates/fcsmuseum/images/logo-gray.png" /></a>
         </div>
 
         <jdoc:include type="modules" name="header" style="none" />
@@ -105,7 +105,7 @@ else
                 <div class="row">
 
                     <?php if ($this->countModules('left')): ?>
-                    <div class="col">
+                    <div class="col-4">
                         <jdoc:include type="modules" name="left" style="none" />
                     </div>
                     <?php endif; ?>
@@ -114,11 +114,10 @@ else
                         <jdoc:include type="modules" name="top" style="none" />
                         <jdoc:include type="message" />
                         <jdoc:include type="component" />
-                        <jdoc:include type="modules" name="bottom" style="none" />
                     </div>
 
                     <?php if ($this->countModules('right')) : ?>
-                    <div class="col">
+                    <div class="col-4">
                         <jdoc:include type="modules" name="right" style="none" />
                     </div>
                     <?php endif; ?>
@@ -128,14 +127,34 @@ else
         
         </div>
 
+        <?php if ($this->countModules('bottom-left') || $this->countModules('bottom') || $this->countModules('bottom-right')) : ?>
         <div class="wrapper">
-            <footer class="footer" role="contentinfo">
-                <jdoc:include type="modules" name="footer" style="none" />
-                <div class="footer-copyright">
-                    <?php echo $logo; ?> &copy; <?php echo date('Y'); ?>
-                </div>
-            </footer>
+            <div class="row">
+                <?php if ($this->countModules('bottom-left')): ?>
+                    <div class="col-4">
+                        <jdoc:include type="modules" name="bottom-left" style="none" />
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="col">
+                        <jdoc:include type="modules" name="bottom" style="none" />
+                    </div>
+
+                    <?php if ($this->countModules('bottom-right')) : ?>
+                    <div class="col-4">
+                        <jdoc:include type="modules" name="bottom-right" style="none" />
+                    </div>
+                    <?php endif; ?>
+            </div>
         </div>
+        <?php endif; ?>
+
+        <footer class="footer" role="contentinfo">
+            <jdoc:include type="modules" name="footer" style="none" />
+            <div class="footer-copyright">
+                <?php echo $logo; ?> &copy; <?php echo date('Y'); ?>
+            </div>
+        </footer>
 
     </div>
     
