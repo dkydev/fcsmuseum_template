@@ -31,11 +31,13 @@
         <position>search</position>
         <position>banner</position>
         <position>top</position>
+        <position>body-top</position>
         <position>left</position>
         <position>right</position>
-        <position>bottom</position>
+        <position>body-bottom</position>
         <position>bottom-left</position>
         <position>bottom-right</position>
+        <position>bottom</position>
         <position>footer</position>
         <position>debug</position>
     </positions>

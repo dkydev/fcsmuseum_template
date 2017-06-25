@@ -103,7 +103,7 @@ div.search {
     width: 170px;
 }
 
-@media (max-width: 991px)  {
+@media (max-width: 1199px)  {
     div.search {
         width:100%;
         clear: both;

@@ -89,7 +89,7 @@ else
 
         <div class="wrapper">
         
-            <nav class="navbar navbar-inverse navbar-toggleable-md">
+            <nav class="navbar navbar-inverse navbar-toggleable-lg">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -102,6 +102,9 @@ else
             <jdoc:include type="modules" name="banner" style="none" />
             
             <div class="main-content">
+
+                <jdoc:include type="modules" name="top" style="none" />
+
                 <div class="row">
 
                     <?php if ($this->countModules('left')): ?>
@@ -111,7 +114,7 @@ else
                     <?php endif; ?>
 
                     <div class="col">
-                        <jdoc:include type="modules" name="top" style="none" />
+                        <jdoc:include type="modules" name="body-top" style="none" />
                         <jdoc:include type="message" />
                         <jdoc:include type="component" />
                     </div>
@@ -127,25 +130,31 @@ else
         
         </div>
 
-        <?php if ($this->countModules('bottom-left') || $this->countModules('bottom') || $this->countModules('bottom-right')) : ?>
+        <?php if ($this->countModules('bottom-left') || $this->countModules('body-bottom') || $this->countModules('bottom-right')) : ?>
         <div class="wrapper">
             <div class="row">
                 <?php if ($this->countModules('bottom-left')): ?>
-                    <div class="col-4">
-                        <jdoc:include type="modules" name="bottom-left" style="none" />
-                    </div>
-                    <?php endif; ?>
+                <div class="col-4">
+                    <jdoc:include type="modules" name="bottom-left" style="none" />
+                </div>
+                <?php endif; ?>
 
-                    <div class="col">
-                        <jdoc:include type="modules" name="bottom" style="none" />
-                    </div>
+                <div class="col">
+                    <jdoc:include type="modules" name="body-bottom" style="none" />
+                </div>
 
-                    <?php if ($this->countModules('bottom-right')) : ?>
-                    <div class="col-4">
-                        <jdoc:include type="modules" name="bottom-right" style="none" />
-                    </div>
-                    <?php endif; ?>
+                <?php if ($this->countModules('bottom-right')) : ?>
+                <div class="col-4">
+                    <jdoc:include type="modules" name="bottom-right" style="none" />
+                </div>
+                <?php endif; ?>
             </div>
+        </div>
+        <?php endif; ?>
+
+        <?php if ($this->countModules('bottom')) : ?>
+        <div class="wrapper">
+            <jdoc:include type="modules" name="bottom" style="none" />
         </div>
         <?php endif; ?>
 
